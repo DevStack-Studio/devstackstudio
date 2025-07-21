@@ -147,7 +147,8 @@
   .btn-primary {
     @apply bg-brand-primary hover:bg-brand-primary-dark text-brand-foreground;
     @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
-    @apply shadow-brand hover:shadow-lg hover:scale-[1.02];
+    @apply hover:shadow-lg hover:scale-[1.02];
+    box-shadow: var(--shadow-brand);
   }
   
   .btn-secondary {
