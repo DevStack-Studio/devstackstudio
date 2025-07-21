@@ -1,41 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* DevStack Studio Design System - Modern & Minimal */
 
 @layer base {
   :root {
+    /* Primary Background System */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 0 0% 3%;
+    
+    /* Surface Colors */
+    --surface: 0 0% 98%;
+    --surface-secondary: 0 0% 96%;
+    --surface-tertiary: 0 0% 94%;
+    
+    /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --card-foreground: 0 0% 3%;
+    --card-border: 0 0% 90%;
+    
+    /* Brand Colors */
+    --brand-primary: 221 83% 53%;
+    --brand-primary-light: 221 83% 60%;
+    --brand-primary-dark: 221 83% 45%;
+    --brand-foreground: 0 0% 100%;
+    
+    /* Text Hierarchy */
+    --text-primary: 0 0% 3%;
+    --text-secondary: 0 0% 25%;
+    --text-tertiary: 0 0% 45%;
+    --text-muted: 0 0% 60%;
+    
+    /* Interactive States */
+    --interactive-hover: 0 0% 96%;
+    --interactive-active: 0 0% 94%;
+    
+    /* Borders & Dividers */
+    --border-light: 0 0% 92%;
+    --border: 0 0% 88%;
+    --border-strong: 0 0% 80%;
+    
+    /* Gradients */
+    --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-primary-light)));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(var(--surface)));
+    --gradient-fade: linear-gradient(180deg, hsl(var(--background)) 0%, transparent 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-brand: 0 10px 30px -10px hsl(var(--brand-primary) / 0.3);
+    
+    /* Animations */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    
+    /* Legacy Shadcn Support */
+    --primary: var(--brand-primary);
+    --primary-foreground: var(--brand-foreground);
+    --secondary: var(--surface-secondary);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--surface-tertiary);
+    --muted-foreground: var(--text-tertiary);
+    --accent: var(--interactive-hover);
+    --accent-foreground: var(--text-primary);
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --destructive-foreground: 0 0% 100%;
+    --popover: var(--card);
+    --popover-foreground: var(--card-foreground);
+    --input: var(--border);
+    --ring: var(--brand-primary);
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -100,6 +138,120 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
   }
+}
+
+@layer components {
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-brand-primary hover:bg-brand-primary-dark text-brand-foreground;
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    @apply shadow-brand hover:shadow-lg hover:scale-[1.02];
+  }
+  
+  .btn-secondary {
+    @apply bg-surface border border-border-strong hover:bg-interactive-hover;
+    @apply text-text-primary px-6 py-3 rounded-lg font-medium;
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+  
+  .btn-ghost {
+    @apply text-text-secondary hover:text-text-primary hover:bg-interactive-hover;
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+  }
+  
+  /* Card Variants */
+  .card-elevated {
+    @apply bg-card border border-card-border rounded-xl;
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .card-flat {
+    @apply bg-surface border border-border-light rounded-lg;
+    @apply hover:border-border transition-colors duration-300;
+  }
+  
+  /* Text Utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-primary to-brand-primary-light;
+    @apply bg-clip-text text-transparent;
+  }
+  
+  /* Animation Classes */
+  .fade-in {
+    @apply animate-[fadeIn_0.6s_ease-out];
+  }
+  
+  .fade-in-up {
+    @apply animate-[fadeInUp_0.6s_ease-out];
+  }
+  
+  .slide-in-left {
+    @apply animate-[slideInLeft_0.8s_ease-out];
+  }
+  
+  /* Mobile App-like Components */
+  .mobile-card {
+    @apply bg-card border-0 rounded-2xl shadow-lg;
+    @apply p-6 m-4 hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-card/90 backdrop-blur-md;
+    @apply border-t border-border-light px-4 py-3 z-50;
+  }
+  
+  /* Container Utilities */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      opacity: 0; 
+      transform: translateX(-20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  /* Gradient Utilities */
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+  
+  .bg-gradient-surface {
+    background: var(--gradient-surface);
+  }
+  
+  /* Custom Colors */
+  .text-brand { color: hsl(var(--brand-primary)); }
+  .bg-brand { background-color: hsl(var(--brand-primary)); }
+  .border-brand { border-color: hsl(var(--brand-primary)); }
 }

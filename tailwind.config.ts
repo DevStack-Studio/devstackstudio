@@ -18,7 +18,47 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
+			},
 			colors: {
+				/* DevStack Studio Design System */
+				
+				/* Surfaces */
+				surface: {
+					DEFAULT: 'hsl(var(--surface))',
+					secondary: 'hsl(var(--surface-secondary))',
+					tertiary: 'hsl(var(--surface-tertiary))',
+				},
+				
+				/* Brand Colors */
+				brand: {
+					primary: 'hsl(var(--brand-primary))',
+					'primary-light': 'hsl(var(--brand-primary-light))',
+					'primary-dark': 'hsl(var(--brand-primary-dark))',
+					foreground: 'hsl(var(--brand-foreground))',
+				},
+				
+				/* Text Hierarchy */
+				text: {
+					primary: 'hsl(var(--text-primary))',
+					secondary: 'hsl(var(--text-secondary))',
+					tertiary: 'hsl(var(--text-tertiary))',
+					muted: 'hsl(var(--text-muted))',
+				},
+				
+				/* Interactive States */
+				interactive: {
+					hover: 'hsl(var(--interactive-hover))',
+					active: 'hsl(var(--interactive-active))',
+				},
+				
+				/* Borders */
+				'border-light': 'hsl(var(--border-light))',
+				'border-strong': 'hsl(var(--border-strong))',
+				'card-border': 'hsl(var(--card-border))',
+				
+				/* Legacy Shadcn Support */
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
